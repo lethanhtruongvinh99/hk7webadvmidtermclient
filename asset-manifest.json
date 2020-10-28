@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/hk7webadvmidtermclient/static/css/main.ab7136cd.chunk.css",
+    "main.js": "/hk7webadvmidtermclient/static/js/main.6480b783.chunk.js",
+    "main.js.map": "/hk7webadvmidtermclient/static/js/main.6480b783.chunk.js.map",
+    "runtime-main.js": "/hk7webadvmidtermclient/static/js/runtime-main.c88114ec.js",
+    "runtime-main.js.map": "/hk7webadvmidtermclient/static/js/runtime-main.c88114ec.js.map",
+    "static/css/2.20aa2d7b.chunk.css": "/hk7webadvmidtermclient/static/css/2.20aa2d7b.chunk.css",
+    "static/js/2.c97fd00a.chunk.js": "/hk7webadvmidtermclient/static/js/2.c97fd00a.chunk.js",
+    "static/js/2.c97fd00a.chunk.js.map": "/hk7webadvmidtermclient/static/js/2.c97fd00a.chunk.js.map",
+    "static/js/3.4673b076.chunk.js": "/hk7webadvmidtermclient/static/js/3.4673b076.chunk.js",
+    "static/js/3.4673b076.chunk.js.map": "/hk7webadvmidtermclient/static/js/3.4673b076.chunk.js.map",
+    "index.html": "/hk7webadvmidtermclient/index.html",
+    "static/css/2.20aa2d7b.chunk.css.map": "/hk7webadvmidtermclient/static/css/2.20aa2d7b.chunk.css.map",
+    "static/css/main.ab7136cd.chunk.css.map": "/hk7webadvmidtermclient/static/css/main.ab7136cd.chunk.css.map",
+    "static/js/2.c97fd00a.chunk.js.LICENSE.txt": "/hk7webadvmidtermclient/static/js/2.c97fd00a.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.c88114ec.js",
+    "static/css/2.20aa2d7b.chunk.css",
+    "static/js/2.c97fd00a.chunk.js",
+    "static/css/main.ab7136cd.chunk.css",
+    "static/js/main.6480b783.chunk.js"
+  ]
+}
