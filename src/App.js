@@ -1,6 +1,8 @@
 import "./App.css";
 import React, { useEffect, useState } from "react";
 import BoardList from "./Components/BoardList/BoardList";
+import Header from "./Components/Header/Header"
+import Login from "./Components/Login/Login"
 function App() {
   const [data, setData] = useState([]);
   const [hasError, setHasError] = useState(false);
@@ -18,7 +20,8 @@ function App() {
   }, []);
   return (
     <div>
-      <h1 className="bg-primary text-center">Header1</h1>
+      <Header />
+      <Login />
       <div className="container-fluid d-flex justify-content-center">
         <BoardList ListItem={data} />
       </div>
