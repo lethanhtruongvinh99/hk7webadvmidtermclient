@@ -1,0 +1,70 @@
+.main-container {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+}
+.header {
+  font-size: 24px;
+  font-family: "Open Sans", sans-serif;
+}
+label {
+  font-size: 24px;
+}
+input {
+  margin-top: 6px;
+  min-width: 18em;
+  height: 37px;
+  padding: 0px 10px;
+  font-size: 16px;
+  font-family: "Open Sans", sans-serif;
+  background-color: #f3f3f3;
+  border: 0;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.form {
+  margin-top: 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: fit-content;
+}
+input.form-check-input {
+  width: 16px;
+  height: 16px;
+  float: left;
+  margin-right: 80%;
+}
+.main-container:focus {
+  outline: none;
+  box-shadow: 0px 0px 12px 0.8px #3474dbb2;
+}
+.main-container:hover {
+  outline: none;
+  box-shadow: 0px 0px 12px 0.8px #3474dbb2;
+}
+.btn {
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+.form-check-label {
+  font-size: 16px;
+  display: inline;
+}
+.notification{
+    font-size: 16px;
+    color: red;
+    font-style: italic;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
