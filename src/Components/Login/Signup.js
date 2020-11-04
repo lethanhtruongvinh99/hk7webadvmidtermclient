@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { Redirect, withRouter } from "react-router-dom";
+import Header from "../Header/Header";
 import "./style.css";
 function Signup() {
   const error = [
@@ -9,39 +11,48 @@ function Signup() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confPassword, setConfPassword] = useState("");
-  const [notification, setNotification] = useState("");
-  const [hasError, setHasError] = useState(false);
-  const  handleSubmit = async (e) => {
+  const [notification, setNotification] = useState();
+  const handleSubmit = (e) => {
     e.preventDefault();
-    // if (password.length < 6 || password.length > 20) {
-    //   setNotification(error[1]);
-    // } else if (password !== confPassword) {
-    //   setNotification(error[0]);
-    // } else {
-    //   setNotification("");
-    // }
-    const form = e.target;
-    const data = new FormData(form);
-    alert(JSON.stringify(Object.fromEntries(data)));
-    await fetch("http://localhost:3000/signup", {
-      method:"POST",
-      body: JSON.stringify(Object.fromEntries(data)),
-    });
-  };
-  const handleChangeUsername = (e) => {
-    setUsername(e.target.value);
-  };
-  const handleChangePassword = (e) => {
-    setPassword(e.target.value);
-  };
-  const handleChangeConfPassword = (e) => {
-    setConfPassword(e.target.value);
+    if (
+      username.length === 0 ||
+      password.length === 0 ||
+      confPassword.length === 0
+    ) {
+      setNotification("Vui lòng nhập đầy đủ thông tin");
+      return;
+    }
+    if (password !== confPassword) {
+      setNotification("Mật khẩu chưa khớp");
+      return;
+    }
+    const signUpStatus = fetch("http://localhost:3000/signup", {
+      method: "POST",
+      cache: "no-cache",
+      credentials: "same-origin",
+      headers: new Headers({ "content-type": "application/json" }),
+      body: JSON.stringify({
+        username: username,
+        password: password,
+        confPassword: confPassword,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        if (data.status === 200) {
+          setNotification("Đăng ký thành công");
+        }
+        if (data.status === 201) {
+          setNotification("Tên đăng nhập đã tồn tại");
+        }
+      });
   };
 
   return (
     <div className="main-container">
       <div className="header">Sign Up</div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={(e) => handleSubmit(e)}>
         <div className="form-group">
           <label htmlFor="username">Username</label>
           <input
@@ -49,7 +60,7 @@ function Signup() {
             className="form-control"
             id="username"
             name="username"
-            onChange={handleChangeUsername}
+            onChange={(e) => setUsername(e.target.value)}
             required
           />
         </div>
@@ -60,7 +71,7 @@ function Signup() {
             className="form-control"
             id="password"
             name="password"
-            onChange={handleChangePassword}
+            onChange={(e) => setPassword(e.target.value)}
             required
           />
         </div>
@@ -71,7 +82,7 @@ function Signup() {
             className="form-control"
             id="confPassword"
             name="confPassword"
-            onChange={handleChangeConfPassword}
+            onChange={(e) => setConfPassword(e.target.value)}
             required
           />
         </div>
