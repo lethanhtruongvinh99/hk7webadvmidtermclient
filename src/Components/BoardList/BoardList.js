@@ -1,45 +1,62 @@
 import React, { useEffect, useState } from "react";
 import BoardItem from "../BoardItem/BoardItem";
 import { Modal } from "react-bootstrap";
-import Header from "../Header/Header";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 function BoardList(props) {
-  //props is UserId
+  const accessToken = localStorage.getItem("accessToken");
+  if (accessToken) {
+  } else {
+  }
   const [data, setData] = useState([]);
   const [hasError, setHasError] = useState(false);
   const [isModalHide, setIsModalHide] = useState(false);
   const [boardName, setBoardName] = useState("");
-  const userId = localStorage.getItem("userId");
-  console.log(userId);
+  const [notification, setNotification] = useState("");
+  console.log(accessToken);
   useEffect(() => {
     loadData();
   }, []);
-  const handleAddBoardBtn = () => {
-    if (boardName.length === 0) {
-      alert("Not null");
-      return;
-    }
-    alert(boardName);
-  };
   const requestAdd = () => {
     const response = fetch("http://localhost:3000/boards/add", {
       method: "POST",
-      headers: new Headers({ "content-type": "application/json" }),
-      body: JSON.stringify({ userId: userId, boardName: boardName }),
+      headers: new Headers({
+        "content-type": "application/json",
+        authorization: localStorage.getItem("accessToken"),
+      }),
+      body: JSON.stringify({ boardName: boardName }),
     })
-    //if response status === 200 do below 
       .then((response) => response.json())
       .then((data) => {
-        if (data.status === 200) {
-          setIsModalHide(false);
-          loadData();
-        } else {
-          return;
-        }
+        console.log(data);
+        loadData();
       });
   };
+  const requestAddNewBoard = async () => {
+    const response = await fetch("http://localhost:3000/boards/add", {
+      method: "POST",
+      headers: new Headers({
+        "content-type": "application/json",
+        authorization: localStorage.getItem("accessToken"),
+      }),
+      body: JSON.stringify({ boardName: boardName }),
+    });
+    console.log(response);
+    if (response.status === 200) {
+      setIsModalHide(false);
+    } else {
+      const data = await response.json();
+      setNotification(data.message);
+    }
+  };
   const loadData = () => {
-    //const res = await fetch("https://hk7webadvmidtermserver.herokuapp.com/boards");
-    const response = fetch(`http://localhost:3000/boards/userId=${userId}`)
+    //const response = fetch("https://hk7webadvmidtermserver.herokuapp.com/boards")
+    fetch("http://localhost:3000/boards", {
+      headers: {
+        mode: "no-cors",
+        authorization: accessToken,
+      },
+    })
       .then((response) => response.json())
       .then((data) => setData(data));
   };
@@ -51,7 +68,9 @@ function BoardList(props) {
         onClick={() => setIsModalHide(true)}
       >
         <div className="card-body">
-          <small style={{ margin: "auto" }}>Add</small>
+          <i className="fa fa-plus" />
+          <h4 style={{ paddingLeft: "30%", paddingTop:"50%" }}>Add</h4>
+          <small style={{ paddingLeft: "25%" }}>new board</small>
         </div>
       </div>
       {data.map((item) => (
@@ -83,9 +102,15 @@ function BoardList(props) {
           </div>
         </Modal.Body>
         <Modal.Footer>
-          <button className="btn btn-primary float-left" onClick={requestAdd}>
+          <p className="notification">{notification}</p>
+          <a
+            href="/dashboard"
+            type="button"
+            className="btn btn-primary float-left"
+            onClick={requestAddNewBoard}
+          >
             Confirm
-          </button>
+          </a>
         </Modal.Footer>
       </Modal>
     </React.Fragment>

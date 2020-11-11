@@ -8,8 +8,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Landing from "./Components/Landing/Landing";
 import Dashboard from "./Components/Dashboard/Dashboard";
 import BoardDetail from "./Components/BoardDetail/BoardDetail";
-function App() {
-  const url = "/dashboard";
+function App(props) {
   return (
     <div>
       <Router>

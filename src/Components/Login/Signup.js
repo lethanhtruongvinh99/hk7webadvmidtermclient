@@ -10,20 +10,11 @@ function Signup() {
   ];
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [confPassword, setConfPassword] = useState("");
   const [notification, setNotification] = useState();
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (
-      username.length === 0 ||
-      password.length === 0 ||
-      confPassword.length === 0
-    ) {
+    if (username.length === 0 || password.length === 0) {
       setNotification("Vui lòng nhập đầy đủ thông tin");
-      return;
-    }
-    if (password !== confPassword) {
-      setNotification("Mật khẩu chưa khớp");
       return;
     }
     const signUpStatus = fetch("http://localhost:3000/signup", {
@@ -34,18 +25,12 @@ function Signup() {
       body: JSON.stringify({
         username: username,
         password: password,
-        confPassword: confPassword,
       }),
     })
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        if (data.status === 200) {
-          setNotification("Đăng ký thành công");
-        }
-        if (data.status === 201) {
-          setNotification("Tên đăng nhập đã tồn tại");
-        }
+        setNotification(data.message);
       });
   };
 
@@ -72,17 +57,6 @@ function Signup() {
             id="password"
             name="password"
             onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="confPassword">Confirm Password</label>
-          <input
-            type="password"
-            className="form-control"
-            id="confPassword"
-            name="confPassword"
-            onChange={(e) => setConfPassword(e.target.value)}
             required
           />
         </div>

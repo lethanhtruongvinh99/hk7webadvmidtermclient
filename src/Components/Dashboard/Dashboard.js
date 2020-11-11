@@ -8,7 +8,7 @@ function Dashboard(props) {
   const [isModalHide, setIsModalHide] = useState(false);
   const [boardName, setBoardName] = useState("");
   const handleLogout = () => {
-    localStorage.removeItem("userId");
+    localStorage.removeItem("accessToken");
     props.history.push("/login");
   };
   const handleAddBoard = () => {
@@ -26,18 +26,9 @@ function Dashboard(props) {
           <h1 className="float-left">My Boards</h1>
         </div>
         <div className="row">
-          <p>User Id: {localStorage.getItem("userId")}</p>
+          <p>User Id: {localStorage.getItem("accessToken")}</p>
         </div>
         <div className="row">
-          {/* <div
-            className="card"
-            style={{ width: "10rem" }}
-            onClick={() => setIsModalHide(true)}
-          >
-            <div className="card-body">
-              <small style={{ margin: "auto" }}>Add</small>
-            </div>
-          </div> */}
           <BoardList />
         </div>
         {/* <Modal

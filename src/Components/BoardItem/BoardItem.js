@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Link, Redirect, Route, useRouteMatch } from "react-router-dom";
+import { Link, Redirect, Route } from "react-router-dom";
 import { Modal } from "react-bootstrap";
 import "./style.css";
-import BoardDetail from "../BoardDetail/BoardDetail";
-import Switch from "react-bootstrap/esm/Switch";
+
 function BoardItem(props) {
-  let match = useRouteMatch();
   const [delModalHide, setDelModelHide] = useState(false);
   const [newBoardName, setNewBoardName] = useState("");
-  useEffect(() => {});
+  useEffect(() => {}, []);
   const handleConfirmEdit = () => {
     const response = fetch("http://localhost:3000/boards/update", {
       method: "POST",
@@ -28,6 +26,16 @@ function BoardItem(props) {
     )
       .then((response) => response.json())
       .then((data) => console.log(data));
+  };
+  const requestDeleteBoard = async () => {
+    const response = await fetch("http://localhost:3000/boards/delete", {
+      method: "POST",
+      headers: new Headers({ "content-type": "application/json" }),
+      body: JSON.stringify({ boardId: props.BoardItem.boardId }),
+    });
+    console.log(response);
+    const data = await response.json();
+    console.log(data);
   };
   return (
     <div>
@@ -57,7 +65,7 @@ function BoardItem(props) {
             href="/dashboard"
             className="btn btn-danger"
             style={{ marginLeft: "5px" }}
-            onClick={handleOnDeleteCard}
+            onClick={requestDeleteBoard}
           >
             Xóa
           </a>
@@ -85,7 +93,11 @@ function BoardItem(props) {
               </div>
             </Modal.Body>
             <Modal.Footer>
-              <a href="/dashboard" className="btn btn-primary float-left" onClick={handleConfirmEdit}>
+              <a
+                href="/dashboard"
+                className="btn btn-primary float-left"
+                onClick={handleConfirmEdit}
+              >
                 Confirm
               </a>
             </Modal.Footer>
