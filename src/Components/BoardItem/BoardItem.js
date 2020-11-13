@@ -1,32 +1,42 @@
 import React, { useEffect, useState } from "react";
-import { Link, Redirect, Route } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Modal } from "react-bootstrap";
 import "./style.css";
 
 function BoardItem(props) {
-  const [delModalHide, setDelModelHide] = useState(false);
+  const [deleteModalHide, setDeleteModelHide] = useState(false);
+  const [editModalHide, setEditModalHide] = useState(false);
   const [newBoardName, setNewBoardName] = useState("");
+  const [showBoard, setShowBoard] = useState(true);
   useEffect(() => {}, []);
-  const handleConfirmEdit = () => {
-    const response = fetch("http://localhost:3000/boards/update", {
+  const handleConfirmEdit = async () => {
+    const response = await fetch("http://localhost:3000/boards/update", {
       method: "POST",
       headers: new Headers({ "content-type": "application/json" }),
       body: JSON.stringify({
         boardId: props.BoardItem.boardId,
         newBoardName: newBoardName,
       }),
-    })
-      .then((response) => response.json())
-      .then((data) => console.log(data));
-    setDelModelHide(false);
+    });
+    if (response.status === 200) {
+      const data = await response.json();
+      alert(data.message);
+      props.BoardItem.boardName = newBoardName;
+      setEditModalHide(false);
+    } else {
+      const data = await response.json();
+      alert(data.message);
+    }
   };
-  const handleOnDeleteCard = () => {
-    const response = fetch(
-      `http://localhost:3000/boards/delete/boardId=${props.BoardItem.boardId}`
-    )
-      .then((response) => response.json())
-      .then((data) => console.log(data));
+  const hideDeletedBoard = () => {
+    if (props.BoardItem.isDeleted === 1)
+    setShowBoard(!showBoard);
   };
+  const handleDeleteBoard = () => {
+    requestDeleteBoard();
+    setDeleteModelHide(true);
+  };
+
   const requestDeleteBoard = async () => {
     const response = await fetch("http://localhost:3000/boards/delete", {
       method: "POST",
@@ -34,77 +44,104 @@ function BoardItem(props) {
       body: JSON.stringify({ boardId: props.BoardItem.boardId }),
     });
     console.log(response);
-    const data = await response.json();
-    console.log(data);
+    if (response.status === 200) {
+      const data = await response.json();
+      props.BoardItem.isDeleted = 1;
+      hideDeletedBoard();
+      alert(data.message);
+    }
   };
   return (
-    <div>
-      <div className="card" style={{ width: "18rem" }}>
-        <div className="card-body">
-          <h5 className="card-title">{props.BoardItem.boardName}</h5>
-          <p className="card-text">{props.BoardItem.isCreated}</p>
-          <small className="float-left" style={{ fontStyle: "italic" }}>
-            By: {props.BoardItem.userId}
-          </small>
+    <>
+      {showBoard && (
+        <div className="card" style={{ width: "18rem" }}>
+          <div className="card-body">
+            <h5 className="card-title">{props.BoardItem.boardName}</h5>
+            <p className="card-text">{props.BoardItem.isCreated}</p>
+            <small className="float-left" style={{ fontStyle: "italic" }}>
+              By: {props.BoardItem.userId}
+            </small>
+          </div>
+          <div className="card-footer">
+            <Link
+              to={`/boardID${props.BoardItem.boardId}`}
+              className="btn btn-primary"
+            >
+              Xem
+            </Link>
+            <button
+              className="btn btn-warning"
+              style={{ marginLeft: "5px" }}
+              onClick={() => setEditModalHide(true)}
+            >
+              Sửa
+            </button>
+            <button
+              className="btn btn-danger"
+              style={{ marginLeft: "5px" }}
+              onClick={() => setDeleteModelHide(true)}
+            >
+              Xóa
+            </button>
+          </div>
+          <div>
+            {/* Edit Modal */}
+            <Modal
+              show={editModalHide}
+              onHide={() => setEditModalHide(false)}
+              dialogClassName="modal-90w"
+              aria-labelledby="example-custom-modal-styling-title"
+            >
+              <Modal.Header closeButton>
+                <Modal.Title id="example-custom-modal-styling-title">
+                  Sửa tên bảng
+                </Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <div>
+                  <label>Tên mới</label>
+                  <input
+                    type="text"
+                    value={newBoardName}
+                    onChange={(e) => setNewBoardName(e.target.value)}
+                    required
+                  />
+                </div>
+              </Modal.Body>
+              <Modal.Footer>
+                <button
+                  className="btn btn-primary float-left"
+                  onClick={() => handleConfirmEdit()}
+                >
+                  Xác nhận
+                </button>
+              </Modal.Footer>
+            </Modal>
+            {/* Delete Modal */}
+            <Modal
+              show={deleteModalHide}
+              onHide={() => setDeleteModelHide(false)}
+              dialogClassName="modal-90w"
+              aria-labelledby="example-custom-modal-styling-title"
+            >
+              <Modal.Header closeButton>
+                <Modal.Title id="example-custom-modal-styling-title">
+                  Xóa bảng
+                </Modal.Title>
+              </Modal.Header>
+              <Modal.Footer>
+                <button
+                  className="btn btn-danger float-left"
+                  onClick={() => handleDeleteBoard()}
+                >
+                  Xác nhận
+                </button>
+              </Modal.Footer>
+            </Modal>
+          </div>
         </div>
-        <div className="card-footer">
-          <Link
-            to={`/boardID${props.BoardItem.boardId}`}
-            className="btn btn-primary"
-          >
-            Xem
-          </Link>
-          <button
-            className="btn btn-warning"
-            style={{ marginLeft: "5px" }}
-            onClick={() => setDelModelHide(true)}
-          >
-            Sửa
-          </button>
-          <a
-            href="/dashboard"
-            className="btn btn-danger"
-            style={{ marginLeft: "5px" }}
-            onClick={requestDeleteBoard}
-          >
-            Xóa
-          </a>
-        </div>
-        <div>
-          <Modal
-            show={delModalHide}
-            onHide={() => setDelModelHide(false)}
-            dialogClassName="modal-90w"
-            aria-labelledby="example-custom-modal-styling-title"
-          >
-            <Modal.Header closeButton>
-              <Modal.Title id="example-custom-modal-styling-title">
-                Edit Board Name {props.BoardItem.boardId}
-              </Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <div>
-                <label>New Name</label>
-                <input
-                  type="text"
-                  value={newBoardName}
-                  onChange={(e) => setNewBoardName(e.target.value)}
-                />
-              </div>
-            </Modal.Body>
-            <Modal.Footer>
-              <a
-                href="/dashboard"
-                className="btn btn-primary float-left"
-                onClick={handleConfirmEdit}
-              >
-                Confirm
-              </a>
-            </Modal.Footer>
-          </Modal>
-        </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 }
 

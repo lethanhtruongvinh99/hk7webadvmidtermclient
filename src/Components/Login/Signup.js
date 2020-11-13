@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Redirect, withRouter } from "react-router-dom";
-import Header from "../Header/Header";
+import { useHistory } from "react-router-dom";
 import "./style.css";
 function Signup() {
+  const history = useHistory();
   const error = [
     "Mật khẩu chưa khớp",
     "Mật khẩu phải từ 6 đến 20 ký tự",
@@ -33,13 +33,16 @@ function Signup() {
         setNotification(data.message);
       });
   };
+  const handleLogin = () => {
+    history.push("/login");
+  };
 
   return (
     <div className="main-container">
-      <div className="header">Sign Up</div>
+      <div className="header">Đăng ký</div>
       <form onSubmit={(e) => handleSubmit(e)}>
         <div className="form-group">
-          <label htmlFor="username">Username</label>
+          <label htmlFor="username">Tên đăng nhập</label>
           <input
             type="text"
             className="form-control"
@@ -50,7 +53,7 @@ function Signup() {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password">Mật khẩu</label>
           <input
             type="password"
             className="form-control"
@@ -61,9 +64,21 @@ function Signup() {
           />
         </div>
         <p className="notification">{notification}</p>
-        <button type="submit" className="btn btn-primary">
-          Sign Up
+        <hr />
+        <button
+          type="submit"
+          className="btn btn-primary btn-lg btn-block"
+          style={{ marginTop: "1rem" }}
+        >
+          Đăng ký
         </button>
+        <hr />
+        <p
+          style={{ textAlign: "center", cursor: "pointer" }}
+          onClick={handleLogin}
+        >
+          Đăng nhập
+        </p>
       </form>
     </div>
   );

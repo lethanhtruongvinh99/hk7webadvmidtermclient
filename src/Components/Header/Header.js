@@ -1,22 +1,42 @@
 import React from "react";
 import "./style.css";
 import { Link } from "react-router-dom";
-function Header() {
-  const accessToken = localStorage.getItem("accessToken");
+import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
+import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
+import { faColumns } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+function Header(props) {
+  const handleLogout = () => {
+    localStorage.removeItem("accessToken");
+  }
   return (
-    <nav>
-      <Link to="/">
-        <h3>AnotherRetro</h3>
-      </Link>
-      <ul className="nav-links">
-        <Link to="/login">
-          <li>Log in</li>
+    <div>
+      <nav>
+        <Link to="/">
+          <h1 className="Logo">AnotherRetro</h1>
         </Link>
-        <Link to="/signup">
-          <li>Sign up</li>
-        </Link>
-      </ul>
-    </nav>
+        <ul className="nav-links">
+          <Link to="/dashboard">
+            <li>
+              <FontAwesomeIcon icon={faColumns} size="2x" />
+              <span>Dashboard</span>
+            </li>
+          </Link>
+          <Link to="/profile">
+            <li>
+              <FontAwesomeIcon icon={faUserCircle} size="2x" />
+              <span>Trang cá nhân</span>
+            </li>
+          </Link>
+          <a href="/login" onClick={handleLogout}>
+            <li>
+              <FontAwesomeIcon icon={faSignOutAlt} size="2x" />
+              <span>Đăng xuất</span>
+            </li>
+          </a>
+        </ul>
+      </nav>
+    </div>
   );
 }
 export default Header;

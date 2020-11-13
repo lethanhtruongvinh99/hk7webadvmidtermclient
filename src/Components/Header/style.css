@@ -2,7 +2,12 @@
 .nav-links{
     width: 50%;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     list-style: none;
+}
+.Logo {
+    font-weight: bold;
+    font-style: italic;
+    font-family: 'Courier New', Courier, monospace;
 }

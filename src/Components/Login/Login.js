@@ -1,28 +1,18 @@
 import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 import "./style.css";
 function Login(props) {
   //HOOK
-  const accessToken = localStorage.getItem("accessToken");
+  // console.log(localStorage.getItem("accessToken"));
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [notification, setNotification] = useState();
   const [isLogin, setIsLogin] = useState(false);
-  const fetchData = () => {
-    let sendData = {
-      username: username,
-      password: password,
-    };
-    fetch("http://localhost:3000/login", {
-      method: "POST",
-      headers: new Headers({ "content-type": "application/json" }),
-      body: JSON.stringify(sendData),
-    })
-      .then((response) => {
-        response.json();
-      })
-      .then((data) => {
-        console.log(data);
-      });
+  const history = useHistory();
+  const loggedIn = () => {
+    if (localStorage.getItem("accessToken")) {
+      handleLogin();
+    }
   };
   const login = async () => {
     let sendData = {
@@ -46,7 +36,8 @@ function Login(props) {
     }
   };
   useEffect(() => {
-    if (accessToken) {
+    loggedIn();
+    if (isLogin) {
       handleLogin();
     }
   }, []);
@@ -55,14 +46,17 @@ function Login(props) {
     login();
   };
   const handleLogin = () => {
-    props.history.push("/dashboard");
+    history.push("/dashboard");
+  };
+  const handleRegister = () => {
+    history.push("/signup");
   };
   return (
     <div className="main-container">
-      <div className="header">Login</div>
+      <div className="header">Đăng Nhập</div>
       <form onSubmit={(e) => handleSubmit(e)}>
         <div className="form-group">
-          <label htmlFor="username">Username</label>
+          <label htmlFor="username">Tên đăng nhập</label>
           <input
             type="text"
             className="form-control"
@@ -74,7 +68,7 @@ function Login(props) {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password">Mật khẩu</label>
           <input
             type="password"
             className="form-control"
@@ -86,9 +80,21 @@ function Login(props) {
           />
         </div>
         <p className="notification">{notification}</p>
-        <button type="submit" className="btn btn-primary">
-          Login
+        <hr />
+        <button
+          type="submit"
+          className="btn btn-primary btn-lg btn-block"
+          style={{ marginTop: "1rem" }}
+        >
+          Đăng nhập
         </button>
+        <hr />
+        <p
+          style={{ textAlign: "center", cursor: "pointer" }}
+          onClick={handleRegister}
+        >
+          Tạo tài khoản
+        </p>
       </form>
     </div>
   );

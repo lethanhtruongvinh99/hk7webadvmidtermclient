@@ -1,15 +1,13 @@
 import React, { useState } from "react";
 import BoardList from "../BoardList/BoardList";
-import { FontAwesomeIcon } from "@fortawesome/fontawesome-free";
-import { faCoffee } from "@fortawesome/free-solid-svg-icons";
-import { Modal } from "react-bootstrap";
 import "./style.css";
+import Header from "../Header/Header";
 function Dashboard(props) {
   const [isModalHide, setIsModalHide] = useState(false);
   const [boardName, setBoardName] = useState("");
   const handleLogout = () => {
     localStorage.removeItem("accessToken");
-    props.history.push("/login");
+    props.history.push("/");
   };
   const handleAddBoard = () => {
     setIsModalHide(!isModalHide);
@@ -19,8 +17,7 @@ function Dashboard(props) {
   }
   return (
     <div>
-      Welcome User! <br />
-      <input type="button" onClick={handleLogout} value="Logout"></input>
+      <Header />
       <div className="container-fluid">
         <div className="row">
           <h1 className="float-left">My Boards</h1>
