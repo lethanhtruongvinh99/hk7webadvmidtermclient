@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Switch from "react-bootstrap/esm/Switch";
-import { Link, Redirect, useHistory } from "react-router-dom";
+import Logo from "./scrum.png";
+import { Link, useHistory } from "react-router-dom";
 
 function Landing(props) {
   const accessToken = localStorage.getItem("accessToken");
@@ -15,18 +15,34 @@ function Landing(props) {
   }, []);
   const handleLoggedIn = () => {
     history.push("/dashboard");
-    // <Redirect to="/dashboard" />;
   };
   const handleLanding = () => {
     history.push("/");
-    // <Redirect to="/signup" />;
   };
   return (
-    <div>
-      <p>Landing Page</p>
-      <Link to="login" type="btn">
-        Đăng Nhập
-      </Link>
+    <div className="container">
+      <div className="row">
+        <div className="col-12">
+          <h1 className="Logo">AnotherRetro</h1>
+        </div>
+        <div className="row" style={{ marginTop: "9rem" }}>
+          <div className="col-6">
+            <h1>Improve with Fun Sprint Retrospectives</h1>
+            <h4>
+              Collaborate with your remote team and get better in what you do
+              with a simple, intuitive and beautiful tool
+            </h4>
+            <Link to="login" type="btn">
+              <button className="btn btn-success" style={{ borderRadius: "" }}>
+                Get Started for Free
+              </button>
+            </Link>
+          </div>
+          <div className="col-6">
+            <img src={Logo} alt="scrumprocess" style={{width:"600px"}} />
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

@@ -22,19 +22,19 @@ function BoardList(props) {
       method: "POST",
       headers: new Headers({
         "content-type": "application/json",
-        authorization: localStorage.getItem("accessToken"),
+        authorization: accessToken,
       }),
       body: JSON.stringify({ boardName: boardName }),
     });
-    console.log(response);
     if (response.status === 200) {
       const dataRes = await response.json();
-      console.log(dataRes.data);
       setData(data.concat(dataRes.data));
+      alert(dataRes.message);
+      setBoardName("");
       setIsModalHide(false);
     } else {
-      const data = await response.json();
-      setNotification(data.message);
+      const dataRes = await response.json();
+      alert(dataRes.message);
     }
   };
   const loadData = () => {
@@ -57,7 +57,7 @@ function BoardList(props) {
       >
         <div className="card-body">
           <FontAwesomeIcon icon={faPlusCircle} size="4x" style={{color: "green", marginLeft: "23%"}}/>
-          <small style={{ paddingLeft: "25%" }}>new board</small>
+          <small style={{ paddingLeft: "25%" }}>Bảng mới</small>
         </div>
       </div>
       {data.map((item) => (
@@ -92,7 +92,6 @@ function BoardList(props) {
           <Modal.Footer>
             <p className="notification">{notification}</p>
             <button
-              // href="/dashboard"
               type="button"
               className="btn btn-primary float-left"
               onClick={requestAddNewBoard}

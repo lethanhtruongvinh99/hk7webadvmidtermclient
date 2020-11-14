@@ -4,6 +4,7 @@ import { Modal } from "react-bootstrap";
 import "./style.css";
 
 function BoardItem(props) {
+  const accessToken = localStorage.getItem("accessToken");
   const [deleteModalHide, setDeleteModelHide] = useState(false);
   const [editModalHide, setEditModalHide] = useState(false);
   const [newBoardName, setNewBoardName] = useState("");
@@ -12,7 +13,10 @@ function BoardItem(props) {
   const handleConfirmEdit = async () => {
     const response = await fetch("http://localhost:3000/boards/update", {
       method: "POST",
-      headers: new Headers({ "content-type": "application/json" }),
+      headers: new Headers({
+        authorization: accessToken,
+        "content-type": "application/json",
+      }),
       body: JSON.stringify({
         boardId: props.BoardItem.boardId,
         newBoardName: newBoardName,
@@ -29,8 +33,7 @@ function BoardItem(props) {
     }
   };
   const hideDeletedBoard = () => {
-    if (props.BoardItem.isDeleted === 1)
-    setShowBoard(!showBoard);
+    if (props.BoardItem.isDeleted === 1) setShowBoard(!showBoard);
   };
   const handleDeleteBoard = () => {
     requestDeleteBoard();
@@ -40,7 +43,10 @@ function BoardItem(props) {
   const requestDeleteBoard = async () => {
     const response = await fetch("http://localhost:3000/boards/delete", {
       method: "POST",
-      headers: new Headers({ "content-type": "application/json" }),
+      headers: new Headers({
+        authorization: accessToken,
+        "content-type": "application/json",
+      }),
       body: JSON.stringify({ boardId: props.BoardItem.boardId }),
     });
     console.log(response);
@@ -49,6 +55,10 @@ function BoardItem(props) {
       props.BoardItem.isDeleted = 1;
       hideDeletedBoard();
       alert(data.message);
+    } else {
+      const data = await response.json();
+      alert(data.message);
+      setDeleteModelHide(false);
     }
   };
   return (
