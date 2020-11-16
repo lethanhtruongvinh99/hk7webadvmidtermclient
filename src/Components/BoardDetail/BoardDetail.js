@@ -5,7 +5,9 @@ import Header from "../Header/Header";
 import { Modal } from "react-bootstrap";
 
 function BoardDetail(props) {
-  const defaultUrl = "http://localhost:3001";
+  const localhost = "http://localhost:3000";
+  const herokuhost = "https://hk7webadvmidtermserver.herokuapp.com";
+  const defaultLocalUrl = "http://localhost:3001";
   const accessToken = localStorage.getItem("accessToken");
   let url = useRouteMatch();
   const boardId = url.params.boardId;
@@ -15,12 +17,13 @@ function BoardDetail(props) {
   const [newColumnName, setNewColumnName] = useState("");
   const [notification, setNotification] = useState("");
   const handleShareButton = () => {
-    navigator.clipboard.writeText(defaultUrl + url.url);
+    navigator.clipboard.writeText(defaultLocalUrl + url.url);
     alert("Đã copy vào clipboard!");
   };
   const loadBoardInfo = async () => {
     const response = await fetch(
-      `http://localhost:3000/boards/boardId=${boardId}`,
+      // `http://localhost:3000/boards/boardId=${boardId}`,
+      `https://hk7webadvmidtermserver.herokuapp.com/boards/boardId=${boardId}`,
       {
         method: "GET",
         headers: {
@@ -36,7 +39,7 @@ function BoardDetail(props) {
     }
   };
   const loadBoardColumns = async () => {
-    const response = await fetch("http://localhost:3000/columns/columns", {
+    const response = await fetch(herokuhost + "/columns/columns", {
       method: "POST",
       headers: {
         authorization: accessToken,
@@ -51,7 +54,7 @@ function BoardDetail(props) {
     }
   };
   const requestAddNewColumn = async () => {
-    const response = await fetch("http://localhost:3000/columns/add", {
+    const response = await fetch(herokuhost + "/columns/add", {
       method: "POST",
       headers: {
         authorization: accessToken,

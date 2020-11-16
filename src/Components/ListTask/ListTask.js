@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 import Task from "../Task/Task";
 import { Modal } from "react-bootstrap";
 function ListTask(props) {
+  const localhost = "http://localhost:3000";
+  const herokuhost = "https://hk7webadvmidtermserver.herokuapp.com";
   const accessToken = localStorage.getItem("accessToken");
   const [isModalHide, setIsModalHide] = useState(false);
   const [newTaskName, setNewTaskName] = useState("");
   const [data, setData] = useState([]);
   const requestAddTask = async () => {
-    const response = await fetch("http://localhost:3000/tasks/add", {
+    const response = await fetch(herokuhost + "/tasks/add", {
       method: "POST",
       headers: {
         authorization: accessToken,
@@ -28,7 +30,7 @@ function ListTask(props) {
     }
   };
   const requestAllTask = async () => {
-    const response = await fetch("http://localhost:3000/tasks/tasks", {
+    const response = await fetch(herokuhost + "/tasks/tasks", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -43,7 +45,7 @@ function ListTask(props) {
   }, []);
   return (
     <div>
-      <p>{props.ColumnId}</p>
+      {/* <p>{props.ColumnId}</p> */}
       <button
         className="btn btn-primary btn-lg btn-block"
         onClick={() => {

@@ -12,7 +12,7 @@ function Header(props) {
   return (
     <div>
       <nav>
-        <Link to="/">
+        <Link to="/hk7webadvmidtermclient">
           <h1 className="Logo">AnotherRetro</h1>
         </Link>
         <ul className="nav-links">
@@ -28,12 +28,12 @@ function Header(props) {
               <span>Trang cá nhân</span>
             </li>
           </Link>
-          <a href="/login" onClick={handleLogout}>
+          <Link to="/login" onClick={handleLogout}>
             <li>
               <FontAwesomeIcon icon={faSignOutAlt} size="2x" />
               <span>Đăng xuất</span>
             </li>
-          </a>
+          </Link>
         </ul>
       </nav>
     </div>

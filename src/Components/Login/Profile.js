@@ -4,6 +4,8 @@ import Header from "../Header/Header";
 import { Modal } from "react-bootstrap";
 
 function Profile(props) {
+  const localhost = "http://localhost:3000";
+  const herokuhost = "https://hk7webadvmidtermserver.herokuapp.com";
   const history = useHistory();
   //get accessToken and fetch user data
   // console.log(localStorage.getItem("accessToken"));
@@ -18,7 +20,7 @@ function Profile(props) {
   const [newPassword, setNewPassword] = useState("");
   const [confNewPassword, setConfNewPassowrd] = useState("");
   const updateProfile = async () => {
-    const respone = await fetch("http://localhost:3000/users/update", {
+    const respone = await fetch(herokuhost + "/users/update", {
       method: "POST",
       headers: {
         authorization: accessToken,
@@ -27,10 +29,11 @@ function Profile(props) {
       body: JSON.stringify({ fullname: editedName }),
     });
     const data = await respone.json();
+    alert(data.message);
     setNotification(data.message);
   };
   const changePassword = async () => {
-    const response = await fetch("http://localhost:3000/users/changepassword", {
+    const response = await fetch(herokuhost + "/users/changepassword", {
       method: "POST",
       headers: {
         authorization: accessToken,
@@ -52,7 +55,7 @@ function Profile(props) {
     }
   };
   const getProfile = async () => {
-    const response = await fetch("http://localhost:3000/users/profile", {
+    const response = await fetch(herokuhost + "/users/profile", {
       method: "GET",
       headers: {
         authorization: accessToken,
@@ -80,7 +83,6 @@ function Profile(props) {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert(editedName);
     updateProfile();
   };
   const handleBackToLogin = () => {

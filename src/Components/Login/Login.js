@@ -3,11 +3,13 @@ import { useHistory } from "react-router-dom";
 import "./style.css";
 function Login(props) {
   //HOOK
+  const localhost = "http://localhost:3000";
+  const herokuhost = "https://hk7webadvmidtermserver.herokuapp.com";
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [notification, setNotification] = useState();
   const [isLogin, setIsLogin] = useState(false);
-  const [message, setMessage] = useState("");
+  // const [message, setMessage] = useState("");
   const history = useHistory();
   const loggedIn = () => {
     if (localStorage.getItem("accessToken")) {
@@ -15,17 +17,17 @@ function Login(props) {
     }
   };
   const handleGGLogin = async () => {
-    window.open("http://localhost:3000/login/google", "_self");
+    window.open(herokuhost + "/login/google", "_self");
   };
   const handleFBLogin = async () => {
-    window.open("http://localhost:3000/login/facebook", "_self");
+    window.open(herokuhost + "/login/facebook", "_self");
   };
   const login = async () => {
     let sendData = {
       username: username,
       password: password,
     };
-    const response = await fetch("http://localhost:3000/login", {
+    const response = await fetch(herokuhost + "/login", {
       method: "POST",
       headers: new Headers({ "content-type": "application/json" }),
       body: JSON.stringify(sendData),

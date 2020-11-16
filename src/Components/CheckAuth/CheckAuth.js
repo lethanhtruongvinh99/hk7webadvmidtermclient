@@ -2,13 +2,15 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 
 function CheckAuth() {
+  const localhost = "http://localhost:3000";
+  const herokuhost = "https://hk7webadvmidtermserver.herokuapp.com";
   const history = useHistory();
   const [notification, setNotification] = useState("");
   useEffect(() => {
     getFromRedirect();
   }, []);
   const getFromRedirect = async () => {
-    const response = await fetch("http://localhost:3000/login/google/success");
+    const response = await fetch(herokuhost + "/login/google/success");
     const data = await response.json();
     if (response.status === 200) {
       localStorage.setItem("accessToken", data.accessToken);

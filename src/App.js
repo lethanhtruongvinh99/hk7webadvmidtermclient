@@ -17,8 +17,7 @@ function App(props) {
         <div>
           <Switch>
             <Route
-              path="/"
-              exact
+              path="/hk7webadvmidtermclient"
               component={() => <Landing isLoggedIn={checkLoggedIn} />}
             />
             <Route path="/login" component={Login} />
@@ -27,21 +26,6 @@ function App(props) {
             <Route path="/profile" component={Profile} />
             <Route path="/checkauth" component={CheckAuth} />
             <Route path={`/boardID:boardId`} component={BoardDetail} />
-            {/* <Route path="/" exact>
-              <Landing isLoggedIn={checkLoggedIn} />
-            </Route>
-            <Route path="/login">
-              <Login />
-            </Route>
-            <Route path="/signup">
-              <Signup />
-            </Route>
-            <Route path="/dashboard">
-              <Dashboard />
-            </Route>
-            <Route path={`/boardID:boardId`}>
-              <BoardDetail />
-            </Route> */}
           </Switch>
         </div>
       </Router>

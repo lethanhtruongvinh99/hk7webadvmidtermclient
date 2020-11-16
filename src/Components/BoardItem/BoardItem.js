@@ -4,6 +4,8 @@ import { Modal } from "react-bootstrap";
 import "./style.css";
 
 function BoardItem(props) {
+  const localhost = "http://localhost:3000";
+  const herokuhost = "https://hk7webadvmidtermserver.herokuapp.com";
   const accessToken = localStorage.getItem("accessToken");
   const [deleteModalHide, setDeleteModelHide] = useState(false);
   const [editModalHide, setEditModalHide] = useState(false);
@@ -11,7 +13,7 @@ function BoardItem(props) {
   const [showBoard, setShowBoard] = useState(true);
   useEffect(() => {}, []);
   const handleConfirmEdit = async () => {
-    const response = await fetch("http://localhost:3000/boards/update", {
+    const response = await fetch(herokuhost + "/boards/update", {
       method: "POST",
       headers: new Headers({
         authorization: accessToken,
@@ -41,7 +43,7 @@ function BoardItem(props) {
   };
 
   const requestDeleteBoard = async () => {
-    const response = await fetch("http://localhost:3000/boards/delete", {
+    const response = await fetch(herokuhost + "/boards/delete", {
       method: "POST",
       headers: new Headers({
         authorization: accessToken,

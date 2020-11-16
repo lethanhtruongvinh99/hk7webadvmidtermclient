@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import "./style.css";
 function Signup() {
+  const localhost = "http://localhost:3000";
+  const herokuhost = "https://hk7webadvmidtermserver.herokuapp.com";
   const history = useHistory();
   const error = [
     "Mật khẩu chưa khớp",
@@ -17,7 +19,7 @@ function Signup() {
       setNotification("Vui lòng nhập đầy đủ thông tin");
       return;
     }
-    const signUpStatus = fetch("http://localhost:3000/signup", {
+    const signUpStatus = fetch(herokuhost + "/signup", {
       method: "POST",
       cache: "no-cache",
       credentials: "same-origin",

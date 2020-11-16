@@ -4,13 +4,15 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Modal } from "react-bootstrap";
 export default function Task(props) {
+  const localhost = "http://localhost:3000";
+  const herokuhost = "https://hk7webadvmidtermserver.herokuapp.com";
   const accessToken = localStorage.getItem("accessToken");
   const [editTaskModalHide, setEditTaskModalHide] = useState(false);
   const [deleteTaskModalHide, setDeleteTaskModalHide] = useState(false);
   const [newTaskName, setNewTaskName] = useState("");
   const [showTask, setShowTask] = useState(true);
   const requestEditTask = async () => {
-    const response = await fetch("http://localhost:3000/tasks/update", {
+    const response = await fetch(herokuhost + "/tasks/update", {
       method: "POST",
       headers: {
         authorization: accessToken,
@@ -29,7 +31,7 @@ export default function Task(props) {
     }
   };
   const requestDeleteTask = async () => {
-    const response = await fetch("http://localhost:3000/tasks/delete", {
+    const response = await fetch(herokuhost + "/tasks/delete", {
       method: "POST",
       headers: {
         authorization: accessToken,
@@ -118,7 +120,7 @@ export default function Task(props) {
             >
               <Modal.Header closeButton>
                 <Modal.Title id="example-custom-modal-styling-title">
-                  Xóa bảng
+                  Xóa thẻ
                 </Modal.Title>
               </Modal.Header>
               <Modal.Footer>

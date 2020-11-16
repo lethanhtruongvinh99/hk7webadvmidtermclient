@@ -6,6 +6,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function BoardList(props) {
   //check is token is expire or not ?
+  const localhost = "http://localhost:3000";
+  const herokuhost = "https://hk7webadvmidtermserver.herokuapp.com";
   const accessToken = localStorage.getItem("accessToken");
   if (accessToken) {
   } else {
@@ -18,7 +20,7 @@ function BoardList(props) {
     loadData();
   }, []);
   const requestAddNewBoard = async () => {
-    const response = await fetch("http://localhost:3000/boards/add", {
+    const response = await fetch(herokuhost + "/boards/add", {
       method: "POST",
       headers: new Headers({
         "content-type": "application/json",
@@ -39,7 +41,7 @@ function BoardList(props) {
   };
   const loadData = () => {
     //const response = fetch("https://hk7webadvmidtermserver.herokuapp.com/boards")
-    fetch("http://localhost:3000/boards", {
+    fetch(herokuhost + "/boards", {
       headers: {
         mode: "no-cors",
         authorization: accessToken,

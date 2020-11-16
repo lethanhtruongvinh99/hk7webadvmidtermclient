@@ -7,6 +7,8 @@ import { Modal } from "react-bootstrap";
 import Task from "../Task/Task";
 import ListTask from "../ListTask/ListTask";
 function Column(props) {
+  const localhost = "http://localhost:3000";
+  const herokuhost = "https://hk7webadvmidtermserver.herokuapp.com";
   const accessToken = localStorage.getItem("accessToken");
   const [editColumnModalHide, setEditColumnModalHide] = useState(false);
   const [deleteColumnModalHide, setDeleteColumnModalHide] = useState(false);
@@ -23,7 +25,7 @@ function Column(props) {
     }
   };
   const requestEditColumn = async () => {
-    const response = await fetch("http://localhost:3000/columns/update", {
+    const response = await fetch(herokuhost + "/columns/update", {
       method: "POST",
       headers: {
         authorization: accessToken,
@@ -45,7 +47,7 @@ function Column(props) {
     }
   };
   const requestDeleteColumn = async () => {
-    const response = await fetch("http://localhost:3000/columns/delete", {
+    const response = await fetch(herokuhost + "/columns/delete", {
       method: "POST",
       headers: {
         authorization: accessToken,
@@ -139,7 +141,7 @@ function Column(props) {
         >
           <Modal.Header closeButton>
             <Modal.Title id="example-custom-modal-styling-title">
-              Xóa bảng
+              Xóa cột
             </Modal.Title>
           </Modal.Header>
           <Modal.Footer>
