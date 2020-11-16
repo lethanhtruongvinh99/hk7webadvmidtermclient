@@ -19,7 +19,7 @@ function App(props) {
           <Switch>
             <Route
               path="/"
-              component={() => <Landing isLoggedIn={checkLoggedIn} />}
+              component={Landing} />}
             />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />

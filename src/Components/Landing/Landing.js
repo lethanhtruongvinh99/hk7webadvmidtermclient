@@ -17,7 +17,7 @@ function Landing(props) {
     history.push("/dashboard");
   };
   const handleLanding = () => {
-    history.push("/hk7webadvmidtermclient");
+    history.push("/");
   };
   return (
     <div className="container">

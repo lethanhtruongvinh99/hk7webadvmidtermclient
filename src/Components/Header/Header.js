@@ -12,7 +12,7 @@ function Header(props) {
   return (
     <div>
       <nav>
-        <Link to="/hk7webadvmidtermclient">
+        <Link to="/">
           <h1 className="Logo">AnotherRetro</h1>
         </Link>
         <ul className="nav-links">
