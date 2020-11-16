@@ -1,25 +1,26 @@
 {
   "files": {
-    "main.css": "/hk7webadvmidtermclient/static/css/main.ab7136cd.chunk.css",
-    "main.js": "/hk7webadvmidtermclient/static/js/main.6480b783.chunk.js",
-    "main.js.map": "/hk7webadvmidtermclient/static/js/main.6480b783.chunk.js.map",
-    "runtime-main.js": "/hk7webadvmidtermclient/static/js/runtime-main.c88114ec.js",
-    "runtime-main.js.map": "/hk7webadvmidtermclient/static/js/runtime-main.c88114ec.js.map",
+    "main.css": "/hk7webadvmidtermclient/static/css/main.3fc03f41.chunk.css",
+    "main.js": "/hk7webadvmidtermclient/static/js/main.481c4431.chunk.js",
+    "main.js.map": "/hk7webadvmidtermclient/static/js/main.481c4431.chunk.js.map",
+    "runtime-main.js": "/hk7webadvmidtermclient/static/js/runtime-main.c8e8810b.js",
+    "runtime-main.js.map": "/hk7webadvmidtermclient/static/js/runtime-main.c8e8810b.js.map",
     "static/css/2.20aa2d7b.chunk.css": "/hk7webadvmidtermclient/static/css/2.20aa2d7b.chunk.css",
-    "static/js/2.c97fd00a.chunk.js": "/hk7webadvmidtermclient/static/js/2.c97fd00a.chunk.js",
-    "static/js/2.c97fd00a.chunk.js.map": "/hk7webadvmidtermclient/static/js/2.c97fd00a.chunk.js.map",
-    "static/js/3.4673b076.chunk.js": "/hk7webadvmidtermclient/static/js/3.4673b076.chunk.js",
-    "static/js/3.4673b076.chunk.js.map": "/hk7webadvmidtermclient/static/js/3.4673b076.chunk.js.map",
+    "static/js/2.4d87aa46.chunk.js": "/hk7webadvmidtermclient/static/js/2.4d87aa46.chunk.js",
+    "static/js/2.4d87aa46.chunk.js.map": "/hk7webadvmidtermclient/static/js/2.4d87aa46.chunk.js.map",
+    "static/js/3.c14ee28b.chunk.js": "/hk7webadvmidtermclient/static/js/3.c14ee28b.chunk.js",
+    "static/js/3.c14ee28b.chunk.js.map": "/hk7webadvmidtermclient/static/js/3.c14ee28b.chunk.js.map",
     "index.html": "/hk7webadvmidtermclient/index.html",
     "static/css/2.20aa2d7b.chunk.css.map": "/hk7webadvmidtermclient/static/css/2.20aa2d7b.chunk.css.map",
-    "static/css/main.ab7136cd.chunk.css.map": "/hk7webadvmidtermclient/static/css/main.ab7136cd.chunk.css.map",
-    "static/js/2.c97fd00a.chunk.js.LICENSE.txt": "/hk7webadvmidtermclient/static/js/2.c97fd00a.chunk.js.LICENSE.txt"
+    "static/css/main.3fc03f41.chunk.css.map": "/hk7webadvmidtermclient/static/css/main.3fc03f41.chunk.css.map",
+    "static/js/2.4d87aa46.chunk.js.LICENSE.txt": "/hk7webadvmidtermclient/static/js/2.4d87aa46.chunk.js.LICENSE.txt",
+    "static/media/scrum.93cff158.png": "/hk7webadvmidtermclient/static/media/scrum.93cff158.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.c88114ec.js",
+    "static/js/runtime-main.c8e8810b.js",
     "static/css/2.20aa2d7b.chunk.css",
-    "static/js/2.c97fd00a.chunk.js",
-    "static/css/main.ab7136cd.chunk.css",
-    "static/js/main.6480b783.chunk.js"
+    "static/js/2.4d87aa46.chunk.js",
+    "static/css/main.3fc03f41.chunk.css",
+    "static/js/main.481c4431.chunk.js"
   ]
 }
