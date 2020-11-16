@@ -8,7 +8,7 @@ function BoardDetail(props) {
   const localhost = "http://localhost:3000";
   const herokuhost = "https://hk7webadvmidtermserver.herokuapp.com";
   const defaultLocalUrl = "http://localhost:3001";
-  const githubpagesUrl = "https://lethanhtruongvinh99.github.io"
+  const githubpagesUrl = "https://lethanhtruongvinh99.github.io/hk7webadvmidtermclient/#/"
   const accessToken = localStorage.getItem("accessToken");
   let url = useRouteMatch();
   const boardId = url.params.boardId;
