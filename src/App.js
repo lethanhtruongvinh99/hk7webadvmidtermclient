@@ -7,6 +7,7 @@ import {
   Switch,
   Route,
   HashRouter,
+  useHistory,
 } from "react-router-dom";
 import Landing from "./Components/Landing/Landing";
 import Dashboard from "./Components/Dashboard/Dashboard";
@@ -14,12 +15,13 @@ import BoardDetail from "./Components/BoardDetail/BoardDetail";
 import Profile from "./Components/Login/Profile";
 import CheckAuth from "./Components/CheckAuth/CheckAuth";
 function App(props) {
+  const history = useHistory();
   const checkLoggedIn = false;
-  // useEffect(() => {});
+  useEffect(() => {history.push('/hk7webadvmidterm')}, []);
   //to use that app with local host, use BrowserRouter and all
   return (
     <div>
-      <HashRouter basename="">
+      <HashRouter basename="/">
         <div>
           <Switch>
             <Route path="/" exact component={Landing} />
