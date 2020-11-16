@@ -2,7 +2,12 @@ import "./App.css";
 import React from "react";
 import Login from "./Components/Login/Login";
 import Signup from "./Components/Login/Signup";
-import { BrowserRouter as Router, Switch, Route, HashRouter } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  HashRouter,
+} from "react-router-dom";
 import Landing from "./Components/Landing/Landing";
 import Dashboard from "./Components/Dashboard/Dashboard";
 import BoardDetail from "./Components/BoardDetail/BoardDetail";
@@ -17,10 +22,7 @@ function App(props) {
       <HashRouter basename="/">
         <div>
           <Switch>
-            <Route
-              path="/"
-              component={Landing} />}
-            />
+            <Route path="/" exact component={Landing} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
             <Route path="/dashboard" component={Dashboard} />
