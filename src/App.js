@@ -19,7 +19,7 @@ function App(props) {
   //to use that app with local host, use BrowserRouter and all
   return (
     <div>
-      <HashRouter basename="/">
+      <HashRouter basename="">
         <div>
           <Switch>
             <Route path="/" exact component={Landing} />
