@@ -18,7 +18,7 @@ function App(props) {
         <div>
           <Switch>
             <Route
-              path="/hk7webadvmidtermclient"
+              path="/"
               component={() => <Landing isLoggedIn={checkLoggedIn} />}
             />
             <Route path="/login" component={Login} />
