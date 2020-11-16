@@ -8,6 +8,7 @@ function BoardDetail(props) {
   const localhost = "http://localhost:3000";
   const herokuhost = "https://hk7webadvmidtermserver.herokuapp.com";
   const defaultLocalUrl = "http://localhost:3001";
+  const githubpagesUrl = "https://lethanhtruongvinh99.github.io"
   const accessToken = localStorage.getItem("accessToken");
   let url = useRouteMatch();
   const boardId = url.params.boardId;
@@ -17,7 +18,7 @@ function BoardDetail(props) {
   const [newColumnName, setNewColumnName] = useState("");
   const [notification, setNotification] = useState("");
   const handleShareButton = () => {
-    navigator.clipboard.writeText(defaultLocalUrl + url.url);
+    navigator.clipboard.writeText(githubpagesUrl + url.url);
     alert("Đã copy vào clipboard!");
   };
   const loadBoardInfo = async () => {
