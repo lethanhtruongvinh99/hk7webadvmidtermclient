@@ -14,7 +14,7 @@ function App(props) {
   //to use that app with local host, use BrowserRouter and all
   return (
     <div>
-      <Router basename="https://lethanhtruongvinh99.github.io">
+      <HashRouter basename="/">
         <div>
           <Switch>
             <Route
@@ -29,7 +29,7 @@ function App(props) {
             <Route path={`/boardID:boardId`} component={BoardDetail} />
           </Switch>
         </div>
-      </Router>
+      </HashRouter>
     </div>
   );
 }
