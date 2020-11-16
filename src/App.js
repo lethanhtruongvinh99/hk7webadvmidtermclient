@@ -1,5 +1,5 @@
 import "./App.css";
-import React from "react";
+import React, { useEffect } from "react";
 import Login from "./Components/Login/Login";
 import Signup from "./Components/Login/Signup";
 import {
@@ -17,7 +17,9 @@ import CheckAuth from "./Components/CheckAuth/CheckAuth";
 function App(props) {
   const history = useHistory();
   const checkLoggedIn = false;
-  useEffect(() => {history.push('/hk7webadvmidterm')}, []);
+  useEffect(() => {
+    history.push("/hk7webadvmidterm");
+  }, []);
   //to use that app with local host, use BrowserRouter and all
   return (
     <div>
