@@ -7,6 +7,7 @@ import Landing from "./Components/Landing/Landing";
 import Dashboard from "./Components/Dashboard/Dashboard";
 import BoardDetail from "./Components/BoardDetail/BoardDetail";
 import Profile from "./Components/Login/Profile";
+import CheckAuth from "./Components/CheckAuth/CheckAuth";
 function App(props) {
   const checkLoggedIn = false;
   // useEffect(() => {});
@@ -24,6 +25,7 @@ function App(props) {
             <Route path="/signup" component={Signup} />
             <Route path="/dashboard" component={Dashboard} />
             <Route path="/profile" component={Profile} />
+            <Route path="/checkauth" component={CheckAuth} />
             <Route path={`/boardID:boardId`} component={BoardDetail} />
             {/* <Route path="/" exact>
               <Landing isLoggedIn={checkLoggedIn} />

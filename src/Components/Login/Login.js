@@ -3,16 +3,22 @@ import { useHistory } from "react-router-dom";
 import "./style.css";
 function Login(props) {
   //HOOK
-  // console.log(localStorage.getItem("accessToken"));
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [notification, setNotification] = useState();
   const [isLogin, setIsLogin] = useState(false);
+  const [message, setMessage] = useState("");
   const history = useHistory();
   const loggedIn = () => {
     if (localStorage.getItem("accessToken")) {
       handleLogin();
     }
+  };
+  const handleGGLogin = async () => {
+    window.open("http://localhost:3000/login/google", "_self");
+  };
+  const handleFBLogin = async () => {
+    window.open("http://localhost:3000/login/facebook", "_self");
   };
   const login = async () => {
     let sendData = {
@@ -87,6 +93,24 @@ function Login(props) {
           style={{ marginTop: "1rem" }}
         >
           Đăng nhập
+        </button>
+        <button
+          type="button"
+          className="btn btn-warning btn-lg btn-block"
+          style={{ marginTop: "1rem" }}
+          onClick={() => handleGGLogin()}
+        >
+          Đăng nhập với Google
+        </button>
+        <button
+          type="button"
+          className="btn btn-info btn-lg btn-block"
+          style={{ marginTop: "1rem" }}
+          onClick={() => {
+            handleFBLogin();
+          }}
+        >
+          Đăng nhập với Facebook
         </button>
         <hr />
         <p
