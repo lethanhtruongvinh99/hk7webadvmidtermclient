@@ -2,7 +2,7 @@ import "./App.css";
 import React from "react";
 import Login from "./Components/Login/Login";
 import Signup from "./Components/Login/Signup";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, HashRouter } from "react-router-dom";
 import Landing from "./Components/Landing/Landing";
 import Dashboard from "./Components/Dashboard/Dashboard";
 import BoardDetail from "./Components/BoardDetail/BoardDetail";
@@ -13,7 +13,7 @@ function App(props) {
   // useEffect(() => {});
   return (
     <div>
-      <Router>
+      <HashRouter>
         <div>
           <Switch>
             <Route
@@ -28,7 +28,7 @@ function App(props) {
             <Route path={`/boardID:boardId`} component={BoardDetail} />
           </Switch>
         </div>
-      </Router>
+      </HashRouter>
     </div>
   );
 }

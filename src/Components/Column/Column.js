@@ -4,7 +4,6 @@ import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Modal } from "react-bootstrap";
-import Task from "../Task/Task";
 import ListTask from "../ListTask/ListTask";
 function Column(props) {
   const localhost = "http://localhost:3000";
