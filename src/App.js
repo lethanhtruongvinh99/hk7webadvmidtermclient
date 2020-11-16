@@ -18,7 +18,7 @@ function App(props) {
   const history = useHistory();
   const checkLoggedIn = false;
   useEffect(() => {
-    history.push("/hk7webadvmidterm");
+    history.push("/hk7webadvmidtermclient");
   }, []);
   //to use that app with local host, use BrowserRouter and all
   return (
