@@ -17,13 +17,11 @@ import CheckAuth from "./Components/CheckAuth/CheckAuth";
 function App(props) {
   const history = useHistory();
   const checkLoggedIn = false;
-  useEffect(() => {
-    history.push("/hk7webadvmidtermclient");
-  }, []);
+
   //to use that app with local host, use BrowserRouter and all
   return (
     <div>
-      <HashRouter basename="/">
+      <HashRouter>
         <div>
           <Switch>
             <Route path="/" exact component={Landing} />
