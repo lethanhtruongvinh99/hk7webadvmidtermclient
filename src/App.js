@@ -11,9 +11,10 @@ import CheckAuth from "./Components/CheckAuth/CheckAuth";
 function App(props) {
   const checkLoggedIn = false;
   // useEffect(() => {});
+  //to use that app with local host, use BrowserRouter and all
   return (
     <div>
-      <HashRouter>
+      <Router basename="https://lethanhtruongvinh99.github.io">
         <div>
           <Switch>
             <Route
@@ -28,7 +29,7 @@ function App(props) {
             <Route path={`/boardID:boardId`} component={BoardDetail} />
           </Switch>
         </div>
-      </HashRouter>
+      </Router>
     </div>
   );
 }
