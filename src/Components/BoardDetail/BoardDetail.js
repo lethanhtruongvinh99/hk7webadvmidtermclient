@@ -18,7 +18,7 @@ function BoardDetail(props) {
   const [newColumnName, setNewColumnName] = useState("");
   const [notification, setNotification] = useState("");
   const handleShareButton = () => {
-    navigator.clipboard.writeText("https://lethanhtruongvinh99.github.io/hk7webadvmidtermclient/#/" + url.url);
+    navigator.clipboard.writeText("https://lethanhtruongvinh99.github.io/hk7webadvmidtermclient/#" + url.url);
     alert("Đã copy vào clipboard!");
   };
   const loadBoardInfo = async () => {
